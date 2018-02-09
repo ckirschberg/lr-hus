@@ -1,7 +1,51 @@
 <mat-tab-group class="demo-tab-group">
   <mat-tab label="Hus">
     <div class="demo-tab-content">
-      Oversigt over huset
+      <h2>Oversigt over huset</h2>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Mursten
+            </mat-panel-title>
+            <mat-panel-description>
+              Vælg mursten
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field>
+            <input matInput placeholder="First name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Age">
+          </mat-form-field>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Vinduer
+            </mat-panel-title>
+            <mat-panel-description>
+              Vælg vinduer
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field>
+            <input matInput placeholder="First name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Age">
+          </mat-form-field>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
+      <div class="right-align">
+        Samlet pris kr. 3.154.387,-
+      </div>
+      <div class="right-align" >
+        Heraf pris på tillægskontrakt kr. 143.221,-
+      </div>
     </div>
   </mat-tab>
   

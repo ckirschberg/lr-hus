@@ -8,6 +8,8 @@ import { HousePlanComponent } from './house-plan/house-plan.component';
 
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatTabsModule, MatSidenavModule
+    MatTabsModule, MatSidenavModule, MatExpansionModule, MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

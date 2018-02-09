@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./house-plan.component.scss']
 })
 export class HousePlanComponent implements OnInit {
-
+  panelOpenState: boolean = false;
+  
   constructor() { }
 
   ngOnInit() {
