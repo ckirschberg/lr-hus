@@ -1,3 +1,4 @@
+import { CalcService } from './calc.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -8,21 +9,27 @@ import { HousePlanComponent } from './house-plan/house-plan.component';
 
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatExpansionModule} from '@angular/material/expansion';
+import {MatExpansionModule, MatExpansionPanel} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
+// import { BricksComponent } from './bricks/bricks.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HousePlanComponent
+    HousePlanComponent,
+    // BricksComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatTabsModule, MatSidenavModule, MatExpansionModule, MatInputModule
+    MatTabsModule, MatSidenavModule, MatExpansionModule, MatInputModule, MatCardModule, MatButtonModule, MatSlideToggleModule
   ],
-  providers: [],
+  providers: [CalcService, MatExpansionPanel],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,50 +1,128 @@
 <mat-tab-group class="demo-tab-group">
   <mat-tab label="Hus">
     <div class="demo-tab-content">
-      <h2>Oversigt over huset</h2>
+      <h2>Oversigt</h2>
 
       <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Mursten
-            </mat-panel-title>
-            <mat-panel-description>
-              Vælg mursten
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-form-field>
-            <input matInput placeholder="First name">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Age">
-          </mat-form-field>
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
+          
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Mursten
+              </mat-panel-title>
+              <mat-panel-description *ngIf="!house.bricksInfo.selectedBrick">
+                Vælg mursten
+              </mat-panel-description>
+              <mat-panel-description *ngIf="house.bricksInfo.selectedBrick">
+                {{house.bricksInfo.selectedBrick?.brand}} - {{house.bricksInfo.selectedBrick?.model}} 
+              </mat-panel-description>
+              <mat-panel-description *ngIf="house.bricksInfo.selectedBrick">
+                {{calcBricks(house.bricksInfo.selectedBrick) | currency:'DKK '}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-slide-toggle color="primary" [(ngModel)]="stdFilter">Vis kun standard</mat-slide-toggle>
+
+            <div class="grid-container">
+              <mat-card *ngFor="let brick of bricks" class="example-card grid-item">
+                <div *ngIf="!stdFilter || (stdFilter && brick.standard)">
+                  <mat-card-header>
+                    <mat-card-title>{{brick.name}}</mat-card-title>
+                    <mat-card-subtitle>{{brick.model}}</mat-card-subtitle>
+                  </mat-card-header>
+                  <img mat-card-image src="{{brick.imageUrl}}" alt="Photo of {{brick.name}}">
+                  <mat-card-content>
+                    <p>
+                      {{brick.description}}
+                    </p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-raised-button class="buy-button" color="primary" 
+                    (click)="selectBrick(brick)">
+                      Vælg {{calcBricks(brick) | currency:'DKK '}}
+                    </button>
+                  </mat-card-actions>
+                </div>
+              </mat-card>
+            </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel>
+
+
+
+
+
+
+
+
+        <!-- Trægulve -->
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Vinduer
+              Trægulve
             </mat-panel-title>
             <mat-panel-description>
-              Vælg vinduer
+              Vælg trægulve
+            </mat-panel-description>
+            <mat-panel-description *ngIf="house.bricksInfo.selectedBrick">
+              {{house.bricksInfo.selectedBrick?.brand}} - {{house.bricksInfo.selectedBrick?.model}} 
+            </mat-panel-description>
+            <mat-panel-description *ngIf="house.bricksInfo.selectedBrick">
+              {{calcBricks(house.bricksInfo.selectedBrick) | currency:'DKK '}}
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <mat-form-field>
-            <input matInput placeholder="First name">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Age">
-          </mat-form-field>
+
+          <mat-slide-toggle color="primary" [(ngModel)]="stdFilter">Vis kun standard</mat-slide-toggle>
+
+          <div class="grid-container">
+            <mat-card *ngFor="let brick of bricks" class="example-card grid-item">
+              <div *ngIf="!stdFilter || (stdFilter && brick.standard)">
+                <mat-card-header>
+                  <mat-card-title>{{brick.name}}</mat-card-title>
+                  <mat-card-subtitle>{{brick.model}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{brick.imageUrl}}" alt="Photo of {{brick.name}}">
+                <mat-card-content>
+                  <p>
+                    {{brick.description}}
+                  </p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-raised-button class="buy-button" color="primary" 
+                  (click)="selectBrick(brick)">
+                    Vælg {{calcBricks(brick) | currency:'DKK '}}
+                  </button>
+                </mat-card-actions>
+              </div>
+            </mat-card>
+          </div>
         </mat-expansion-panel>
+
+
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Fliser
+              </mat-panel-title>
+              <mat-panel-description>
+                Vælg fliser
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
 
       </mat-accordion>
 
-      <div class="right-align">
-        Samlet pris kr. 3.154.387,-
+      <div class="result">
+        Samlet pris kr. {{house.basePrice + house.bricksInfo.addOnPrice | currency:'DKK '}}
       </div>
-      <div class="right-align" >
-        Heraf pris på tillægskontrakt kr. 143.221,-
+      <div class="result" >
+        Heraf pris på tillægskontrakt {{house.bricksInfo.addOnPrice  | currency:'DKK '}}
       </div>
     </div>
   </mat-tab>

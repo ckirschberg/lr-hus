@@ -1,0 +1,42 @@
+<!-- <mat-expansion-panel [expanded]="step === 0" (opened)="this.setStep.emit(0)">
+          
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Mursten
+      </mat-panel-title>
+      <mat-panel-description *ngIf="!house.bricksInfo.selectedBrick">
+        Vælg mursten
+      </mat-panel-description>
+      <mat-panel-description *ngIf="house.bricksInfo.selectedBrick">
+        {{house.bricksInfo.selectedBrick?.brand}} - {{house.bricksInfo.selectedBrick?.model}} 
+      </mat-panel-description>
+      <mat-panel-description *ngIf="house.bricksInfo.selectedBrick">
+        {{calcBricks(house.bricksInfo.selectedBrick) | currency:'DKK '}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-slide-toggle color="primary" [(ngModel)]="stdFilter">Vis kun standard</mat-slide-toggle>
+
+    <div class="grid-container">
+      <mat-card *ngFor="let brick of bricks" class="example-card grid-item">
+        <div *ngIf="!stdFilter || (stdFilter && brick.standard)">
+          <mat-card-header>
+            <mat-card-title>{{brick.name}}</mat-card-title>
+            <mat-card-subtitle>{{brick.model}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{brick.imageUrl}}" alt="Photo of {{brick.name}}">
+          <mat-card-content>
+            <p>
+              {{brick.description}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button class="buy-button" color="primary" 
+            (click)="selectBrick(brick)">
+              Vælg {{calcBricks(brick) | currency:'DKK '}}
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </div>
+</mat-expansion-panel> -->
