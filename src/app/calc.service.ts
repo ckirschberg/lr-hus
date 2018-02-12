@@ -12,4 +12,12 @@ export class CalcService {
     return (brick.price - house.bricksInfo.brickPriceStandard) * house.bricksInfo.totalBricksNeeded; 
   }
 
+  public calcSquareMeter(floor: Item, house: House) : number {
+    return (floor.price - house.woodFloorInfo.woodFloorsPriceStandard) * house.woodFloorInfo.totalWoodFloorsNeeded;
+  }
+
+  public calcTotalPrice(house: House) : number {
+    return (house.basePrice + house.bricksInfo.addOnPrice + house.woodFloorInfo.addOnPrice);
+  }
+
 }

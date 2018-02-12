@@ -61,36 +61,37 @@
             <mat-panel-title>
               Trægulve
             </mat-panel-title>
-            <mat-panel-description>
+            <mat-panel-description *ngIf="!house.woodFloorInfo.selectedWoodFloor">
               Vælg trægulve
             </mat-panel-description>
-            <mat-panel-description *ngIf="house.bricksInfo.selectedBrick">
-              {{house.bricksInfo.selectedBrick?.brand}} - {{house.bricksInfo.selectedBrick?.model}} 
+            <mat-panel-description *ngIf="house.woodFloorInfo.selectedWoodFloor">
+              {{house.woodFloorInfo.selectedWoodFloor?.brand}} - 
+              {{house.woodFloorInfo.selectedWoodFloor?.model}} 
             </mat-panel-description>
-            <mat-panel-description *ngIf="house.bricksInfo.selectedBrick">
-              {{calcBricks(house.bricksInfo.selectedBrick) | currency:'DKK '}}
+            <mat-panel-description *ngIf="house.woodFloorInfo.selectedWoodFloor">
+              {{calcSquareMeter(house.woodFloorInfo.selectedWoodFloor) | currency:'DKK '}}
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <mat-slide-toggle color="primary" [(ngModel)]="stdFilter">Vis kun standard</mat-slide-toggle>
+          <mat-slide-toggle color="primary" [(ngModel)]="stdFilter2">Vis kun standard</mat-slide-toggle>
 
           <div class="grid-container">
-            <mat-card *ngFor="let brick of bricks" class="example-card grid-item">
-              <div *ngIf="!stdFilter || (stdFilter && brick.standard)">
+            <mat-card *ngFor="let woodFloor of woodFloors" class="example-card grid-item">
+              <div *ngIf="!stdFilter || (stdFilter && woodFloor.standard)">
                 <mat-card-header>
-                  <mat-card-title>{{brick.name}}</mat-card-title>
-                  <mat-card-subtitle>{{brick.model}}</mat-card-subtitle>
+                  <mat-card-title>{{woodFloor.name}}</mat-card-title>
+                  <mat-card-subtitle>{{woodFloor.model}}</mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image src="{{brick.imageUrl}}" alt="Photo of {{brick.name}}">
+                <img mat-card-image src="{{woodFloor.imageUrl}}" alt="Photo of {{woodFloor.name}}">
                 <mat-card-content>
                   <p>
-                    {{brick.description}}
+                    {{woodFloor.description}}
                   </p>
                 </mat-card-content>
                 <mat-card-actions>
                   <button mat-raised-button class="buy-button" color="primary" 
-                  (click)="selectBrick(brick)">
-                    Vælg {{calcBricks(brick) | currency:'DKK '}}
+                  (click)="selectWoodFloor(woodFloor)">
+                    Vælg {{calcSquareMeter(woodFloor) | currency:'DKK '}}
                   </button>
                 </mat-card-actions>
               </div>
@@ -99,30 +100,50 @@
         </mat-expansion-panel>
 
 
+        <!-- Fliser -->
         <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Fliser
-              </mat-panel-title>
-              <mat-panel-description>
-                Vælg fliser
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-form-field>
-              <input matInput placeholder="First name">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Age">
-            </mat-form-field>
-          </mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Fliser
+            </mat-panel-title>
+            <mat-panel-description>
+              Vælg fliser
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field>
+            <input matInput placeholder="First name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Age">
+          </mat-form-field>
+        </mat-expansion-panel>
+
+
+        <!-- Trappe -->
+        <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Trappe
+            </mat-panel-title>
+            <mat-panel-description>
+              Vælg trappe
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field>
+            <input matInput placeholder="First name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Age">
+          </mat-form-field>
+        </mat-expansion-panel>
 
       </mat-accordion>
 
       <div class="result">
-        Samlet pris kr. {{house.basePrice + house.bricksInfo.addOnPrice | currency:'DKK '}}
+        Samlet pris kr. {{calc.calcTotalPrice(house) | currency:'DKK '}}
       </div>
       <div class="result" >
-        Heraf pris på tillægskontrakt {{house.bricksInfo.addOnPrice  | currency:'DKK '}}
+        Heraf pris på tillægskontrakt {{calc.calcTotalPrice(house) - house.basePrice | currency:'DKK '}}
       </div>
     </div>
   </mat-tab>
