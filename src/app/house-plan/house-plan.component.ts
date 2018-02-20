@@ -11,8 +11,9 @@ import { House } from '../entities/house';
 })
 export class HousePlanComponent implements OnInit {
   panelOpenState: boolean = false;
+  stdFilter;
   step = -1;
-  private house: House = 
+  house: House = 
   { id:'1', name: 'Christian og Michelles hus på Triumfbuen 17 Hillerød', 
     basePrice: 3125612,
     bricksInfo: {
@@ -28,7 +29,7 @@ export class HousePlanComponent implements OnInit {
       addOnPrice: 0
     }
   };
-  private bricks: Item[] = [
+  bricks: Item[] = [
     { _id: '1', standard: true, brand: 'Randers Tegl', name: 'Prima Umbra', model: 'RT 476', price: 6.5, unit: 'pr. stk.', imageUrl: 'http://randerstegl.dk/Files/Files/Varekatalog/Mursten/RT-476/RT476_oversigt.jpg', description: 'Sandfarvet blødstrøget ensfarvet sten og 4 facader.'  },
     { _id: '2', standard: false, brand: 'Randers Tegl', name: 'Prima Lucca', model: 'RT 102', price: 7.25, unit: 'pr. stk.', imageUrl: 'http://randerstegl.dk/Files/Files/Varekatalog/Mursten/RT-102/RT102_oversigt.jpg', description:'Gul blødstrøget sten med hvidlig engobe.'  },
     { _id: '3', standard: true, brand: 'Randers Tegl', name: 'Prima Lava', model: 'RT 476', price: 6.25, unit: 'pr. stk.', imageUrl: 'http://randerstegl.dk/Files/Files/Varekatalog/Mursten/RT-434/RT434_oversigt.jpg'  },
@@ -36,15 +37,15 @@ export class HousePlanComponent implements OnInit {
     { _id: '5', standard: false, brand: 'Randers Tegl', name: 'Unika Delfi grådæmpet', model: 'RT 517', price: 14, unit: 'pr. stk.', imageUrl: 'http://randerstegl.dk/Files/Files/Varekatalog/Mursten/RT-517/RT517_oversigt.jpg', description: 'Grådæmpet blødstrøget sten med 4 facader. Den specielle farve opnås ved brænding 2 gange. Farven er gennemgående.'  },
   ]
 
-  private woodFloors: Item[] = [
-    { _id: '1', standard: true, brand: 'Timberman', name: '3 stav - Natur eg', model: 'ABC', price: 300, unit: 'pr. m2', imageUrl: '', description: ''  },
-    { _id: '2', standard: true, brand: 'Timberman', name: '3 stav - Lys eg', model: 'DCD', price: 300, unit: 'pr. m2', imageUrl: '', description:''  },
-    { _id: '3', standard: true, brand: 'Timberman', name: '3 stav - Mørk eg', model: 'QWW', price: 300, unit: 'pr. m2', imageUrl: ''  },
-    { _id: '4', standard: false, brand: 'Wideplank eg', name: 'ADSe', model: 'RT 475', price: 799, unit: 'pr. m2', imageUrl: ''  },
-    { _id: '5', standard: false, brand: 'Wideplan eg 2', name: 'FDSA', model: 'RT 517', price: 899, unit: 'pr. m2', imageUrl: ''},
+  woodFloors: Item[] = [
+    { _id: '1', standard: true, brand: 'Timberman', name: '3 stav - Natur eg', model: 'Model 21', price: 300, unit: 'pr. m2', imageUrl: '', description: ''  },
+    { _id: '2', standard: true, brand: 'Timberman', name: '3 stav - Lys eg', model: 'Model 22', price: 300, unit: 'pr. m2', imageUrl: '', description:''  },
+    { _id: '3', standard: true, brand: 'Timberman', name: '3 stav - Mørk eg', model: 'Model 23', price: 300, unit: 'pr. m2', imageUrl: ''  },
+    { _id: '4', standard: false, brand: 'Timberman', name: 'Wideplank eg', model: 'Model 12B', price: 799, unit: 'pr. m2', imageUrl: ''  },
+    { _id: '5', standard: false, brand: 'Timberman', name: 'Wideplan eg 2', model: 'XYZ', price: 899, unit: 'pr. m2', imageUrl: ''},
   ]
 
-  constructor(private calc: CalcService) {
+  constructor(public calc: CalcService) {
 
   }
 

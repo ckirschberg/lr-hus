@@ -1,3 +1,6 @@
+<h2>
+  Christian og Michelles 233 kvm trempelhus.
+</h2>
 <mat-tab-group class="demo-tab-group">
   <mat-tab label="Hus">
     <div class="demo-tab-content">
@@ -73,8 +76,8 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <mat-slide-toggle color="primary" [(ngModel)]="stdFilter2">Vis kun standard</mat-slide-toggle>
-
+          <p>Her er endnu ingen billeder af trægulve, men de kunne indsættes.</p>
+          <p>Jeres hus indeholder ialt {{ house.woodFloorInfo.totalWoodFloorsNeeded }} kvm trægulv</p>
           <div class="grid-container">
             <mat-card *ngFor="let woodFloor of woodFloors" class="example-card grid-item">
               <div *ngIf="!stdFilter || (stdFilter && woodFloor.standard)">
@@ -110,12 +113,10 @@
               Vælg fliser
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <mat-form-field>
-            <input matInput placeholder="First name">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Age">
-          </mat-form-field>
+          <p>
+            Her kunne du vælge hvilke fliser der skal ligge på alle flise-gulve i huset. 
+          </p>
+          <p>Jeres hus indeholder ialt 35,6 kvm fliser</p>
         </mat-expansion-panel>
 
 
@@ -129,13 +130,26 @@
               Vælg trappe
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <mat-form-field>
-            <input matInput placeholder="First name">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Age">
-          </mat-form-field>
+          <p>
+            Detaljer om trappen vælges her, hvis huset er mere end 1 plan.
+          </p>
         </mat-expansion-panel>
+
+        <!-- Osv -->
+        <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Osv.
+            </mat-panel-title>
+            <mat-panel-description>
+              
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>
+            Vælge ...
+          </p>
+        </mat-expansion-panel>
+
 
       </mat-accordion>
 
